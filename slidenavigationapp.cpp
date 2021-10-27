@@ -1,6 +1,8 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "slidenavigationapp.h"
 #include "ui_slidenavigationapp.h"
+#include <QPushButton>
+
 
 SlideNavigationApp::SlideNavigationApp(QWidget *parent) :
     QWidget(parent),
@@ -21,6 +23,13 @@ SlideNavigationApp::SlideNavigationApp(QWidget *parent) :
 
 
     connect(ui->widget, SIGNAL(itemClicked(int,QString)), this, SLOT(switchPage(int,QString)));
+
+    for(int i=0;i<6;i++){
+        QPushButton *button1 = new QPushButton("button"+ QString::number(i));
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->addWidget(button1);
+        ui->stackedWidget->widget(i)->setLayout(layout);
+    }
 }
 
 SlideNavigationApp::~SlideNavigationApp()
